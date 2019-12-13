@@ -16,9 +16,7 @@ def main() -> None:
     you_orbits = find_orbits(orbits, "YOU")
     san_orbits = find_orbits(orbits, "SAN")
 
-    common_orbits = list(set(you_orbits).intersection(san_orbits))
-    target_orbit = you_orbits[min([you_orbits.index(item) for item in common_orbits])]
-    transfers = you_orbits.index(target_orbit) + san_orbits.index(target_orbit)
+    transfers = len(set(you_orbits).symmetric_difference(san_orbits))
 
     print(transfers)
 
