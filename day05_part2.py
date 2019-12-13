@@ -30,8 +30,7 @@ def step(intcodes: list, position: int) -> None:
             get_parameter_2(intcodes, position))
         step(intcodes, position + 4)
     elif read_opcode(pad_input(str(intcodes[position]))) == "03":
-        number = input("Please enter your input: ")
-        intcodes[intcodes[position + 1]] = number
+        intcodes[intcodes[position + 1]] = input("Please enter your input: ")
         step(intcodes, position + 2)
     elif read_opcode(pad_input(str(intcodes[position]))) == "04":
         print(get_parameter_1(intcodes, position))
