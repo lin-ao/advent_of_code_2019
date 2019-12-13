@@ -1,64 +1,64 @@
-def pad_input(input: str) -> str:
-    return input.rjust(4, '0')
+def pad_input(intcode: str) -> str:
+    return intcode.rjust(4, '0')
 
 
-def read_opcode(input: str) -> str:
-    return input[2:]
+def read_opcode(intcode: str) -> str:
+    return intcode[2:]
 
 
-def get_parameter_1(input_list: list, position: int) -> int:
-    if pad_input(str(input_list[position]))[1] == "0":
-        return (input_list[input_list[position + 1]])
+def get_parameter_1(intcodes: list, position: int) -> int:
+    if pad_input(str(intcodes[position]))[1] == "0":
+        return (intcodes[intcodes[position + 1]])
     else:
-        return (input_list[position + 1])
+        return (intcodes[position + 1])
 
 
-def get_parameter_2(input_list: list, position: int) -> int:
-    if pad_input(str(input_list[position]))[0] == "0":
-        return (input_list[input_list[position + 2]])
+def get_parameter_2(intcodes: list, position: int) -> int:
+    if pad_input(str(intcodes[position]))[0] == "0":
+        return (intcodes[intcodes[position + 2]])
     else:
-        return (input_list[position + 2])
+        return (intcodes[position + 2])
 
 
-def step(input_list: list, position: int) -> None:
-    if read_opcode(pad_input(str(input_list[position]))) == "01":
-        input_list[input_list[position + 3]] = int(get_parameter_1(input_list, position)) + int(
-            get_parameter_2(input_list, position))
-        step(input_list, position + 4)
-    elif read_opcode(pad_input(str(input_list[position]))) == "02":
-        input_list[input_list[position + 3]] = int(get_parameter_1(input_list, position)) * int(
-            get_parameter_2(input_list, position))
-        step(input_list, position + 4)
-    elif read_opcode(pad_input(str(input_list[position]))) == "03":
+def step(intcodes: list, position: int) -> None:
+    if read_opcode(pad_input(str(intcodes[position]))) == "01":
+        intcodes[intcodes[position + 3]] = int(get_parameter_1(intcodes, position)) + int(
+            get_parameter_2(intcodes, position))
+        step(intcodes, position + 4)
+    elif read_opcode(pad_input(str(intcodes[position]))) == "02":
+        intcodes[intcodes[position + 3]] = int(get_parameter_1(intcodes, position)) * int(
+            get_parameter_2(intcodes, position))
+        step(intcodes, position + 4)
+    elif read_opcode(pad_input(str(intcodes[position]))) == "03":
         number = input("Please enter your input: ")
-        input_list[input_list[position + 1]] = number
-        step(input_list, position + 2)
-    elif read_opcode(pad_input(str(input_list[position]))) == "04":
-        print(get_parameter_1(input_list, position))
-        step(input_list, position + 2)
-    elif read_opcode(pad_input(str(input_list[position]))) == "05":
-        if get_parameter_1(input_list, position) != 0:
-            step(input_list, get_parameter_2(input_list, position))
+        intcodes[intcodes[position + 1]] = number
+        step(intcodes, position + 2)
+    elif read_opcode(pad_input(str(intcodes[position]))) == "04":
+        print(get_parameter_1(intcodes, position))
+        step(intcodes, position + 2)
+    elif read_opcode(pad_input(str(intcodes[position]))) == "05":
+        if get_parameter_1(intcodes, position) != 0:
+            step(intcodes, get_parameter_2(intcodes, position))
         else:
-            step(input_list, position + 3)
-    elif read_opcode(pad_input(str(input_list[position]))) == "06":
-        if get_parameter_1(input_list, position) == 0:
-            step(input_list, get_parameter_2(input_list, position))
+            step(intcodes, position + 3)
+    elif read_opcode(pad_input(str(intcodes[position]))) == "06":
+        if get_parameter_1(intcodes, position) == 0:
+            step(intcodes, get_parameter_2(intcodes, position))
         else:
-            step(input_list, position + 3)
-    elif read_opcode(pad_input(str(input_list[position]))) == "07":
-        if get_parameter_1(input_list, position) < get_parameter_2(input_list, position):
-            input_list[input_list[position + 3]] = 1
+            step(intcodes, position + 3)
+    elif read_opcode(pad_input(str(intcodes[position]))) == "07":
+        if get_parameter_1(intcodes, position) < get_parameter_2(intcodes, position):
+            intcodes[intcodes[position + 3]] = 1
         else:
-            input_list[input_list[position + 3]] = 0
-        step(input_list, position + 4)
-    elif read_opcode(pad_input(str(input_list[position]))) == "08":
-        if get_parameter_1(input_list, position) == get_parameter_2(input_list, position):
-            input_list[input_list[position + 3]] = 1
+            intcodes[intcodes[position + 3]] = 0
+        step(intcodes, position + 4)
+    elif read_opcode(pad_input(str(intcodes[position]))) == "08":
+        if get_parameter_1(intcodes, position) == get_parameter_2(intcodes, position):
+            intcodes[intcodes[position + 3]] = 1
         else:
-            input_list[input_list[position + 3]] = 0
-        step(input_list, position + 4)
-    elif read_opcode(pad_input(str(input_list[position]))) == "99":
+            intcodes[intcodes[position + 3]] = 0
+        step(intcodes, position + 4)
+    elif read_opcode(pad_input(str(intcodes[position]))) == "99":
         print("Finished!")
     else:
         print("Error!")
