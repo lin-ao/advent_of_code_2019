@@ -36,6 +36,28 @@ def step(input_list: list, position: int) -> None:
     elif read_opcode(pad_input(str(input_list[position]))) == "04":
         print(get_parameter_1(input_list, position))
         step(input_list, position + 2)
+    elif read_opcode(pad_input(str(input_list[position]))) == "05":
+        if get_parameter_1(input_list, position) != 0:
+            step(input_list, get_parameter_2(input_list, position))
+        else:
+            step(input_list, position + 3)
+    elif read_opcode(pad_input(str(input_list[position]))) == "06":
+        if get_parameter_1(input_list, position) == 0:
+            step(input_list, get_parameter_2(input_list, position))
+        else:
+            step(input_list, position + 3)
+    elif read_opcode(pad_input(str(input_list[position]))) == "07":
+        if get_parameter_1(input_list, position) < get_parameter_2(input_list, position):
+            input_list[input_list[position + 3]] = 1
+        else:
+            input_list[input_list[position + 3]] = 0
+        step(input_list, position + 4)
+    elif read_opcode(pad_input(str(input_list[position]))) == "08":
+        if get_parameter_1(input_list, position) == get_parameter_2(input_list, position):
+            input_list[input_list[position + 3]] = 1
+        else:
+            input_list[input_list[position + 3]] = 0
+        step(input_list, position + 4)
     elif read_opcode(pad_input(str(input_list[position]))) == "99":
         print("Finished!")
     else:
@@ -43,7 +65,7 @@ def step(input_list: list, position: int) -> None:
 
 
 def main() -> None:
-    with open("day5_input.txt", "r") as file:
+    with open("day05_input.txt", "r") as file:
         for line in file:
             intcodes = [int(item) for item in line.split(",")]
     step(intcodes, 0)

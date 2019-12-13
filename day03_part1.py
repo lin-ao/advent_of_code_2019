@@ -52,7 +52,7 @@ def closest_intersection(wire_list: list) -> int:
 
 
 def main() -> None:
-    with open("day3_input.txt", "r") as inp:
+    with open("day03_input.txt", "r") as inp:
         wire_list = []
         for counter, line in enumerate(inp, 0):
             position = [0, 0]

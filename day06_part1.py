@@ -11,7 +11,7 @@ def main() -> None:
     orbits = {}
     keys = []
 
-    with open("day6_input.txt", "r") as inp:
+    with open("day06_input.txt", "r") as inp:
         for line in inp:
             orbits[line.split(")")[1].rstrip()] = line.split(")")[0]
             keys.append(line.split(")")[1].rstrip())

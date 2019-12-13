@@ -9,7 +9,7 @@ def find_orbits(orbits: dict, key: str) -> list:
 def main() -> None:
     orbits = {}
 
-    with open("day6_input.txt", "r") as inp:
+    with open("day06_input.txt", "r") as inp:
         for line in inp:
             orbits[line.split(")")[1].rstrip()] = line.split(")")[0]
 

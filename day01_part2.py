@@ -7,7 +7,7 @@ def calculate_fuel(mass: int) -> int:
 
 
 def main() -> None:
-    with open("Day1_input.txt", "r") as file:
+    with open("day01_input.txt", "r") as file:
         total_fuel = 0
         for line in file:
             total_fuel += calculate_fuel(int(line))
