@@ -21,7 +21,7 @@ def main() -> None:
     for item in keys:
         total_orbits += count_orbit(orbits, item)
 
-    print(total_orbits)
+    print("Answer: " + str(total_orbits))
 
 
 if __name__ == "__main__":

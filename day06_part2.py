@@ -18,7 +18,7 @@ def main() -> None:
 
     transfers = len(set(you_orbits).symmetric_difference(san_orbits))
 
-    print(transfers)
+    print("Answer: " + str(transfers))
 
 
 if __name__ == "__main__":
