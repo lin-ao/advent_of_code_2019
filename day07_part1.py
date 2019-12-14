@@ -23,15 +23,12 @@ def get_parameter_2(intcodes: list, position: int) -> int:
         return (intcodes[position + 2])
 
 
-def step(intcodes: list, position: int, phase_setting: int, first_time: bool, previous_output: int,
-         temporary_output: int) -> int:
+def step(intcodes: list, position: int, phase_setting: int, first_time: bool, previous_output: int, temporary_output: int) -> int:
     if read_opcode(pad_input(str(intcodes[position]))) == "01":
-        intcodes[intcodes[position + 3]] = int(get_parameter_1(intcodes, position)) + int(
-            get_parameter_2(intcodes, position))
+        intcodes[intcodes[position + 3]] = int(get_parameter_1(intcodes, position)) + int(get_parameter_2(intcodes, position))
         return step(intcodes, position + 4, phase_setting, first_time, previous_output, temporary_output)
     elif read_opcode(pad_input(str(intcodes[position]))) == "02":
-        intcodes[intcodes[position + 3]] = int(get_parameter_1(intcodes, position)) * int(
-            get_parameter_2(intcodes, position))
+        intcodes[intcodes[position + 3]] = int(get_parameter_1(intcodes, position)) * int(get_parameter_2(intcodes, position))
         return step(intcodes, position + 4, phase_setting, first_time, previous_output, temporary_output)
     elif read_opcode(pad_input(str(intcodes[position]))) == "03":
         if first_time:
@@ -45,14 +42,12 @@ def step(intcodes: list, position: int, phase_setting: int, first_time: bool, pr
         return step(intcodes, position + 2, phase_setting, first_time, previous_output, temporary_output)
     elif read_opcode(pad_input(str(intcodes[position]))) == "05":
         if get_parameter_1(intcodes, position) != 0:
-            return step(intcodes, get_parameter_2(intcodes, position), phase_setting, first_time, previous_output,
-                        temporary_output)
+            return step(intcodes, get_parameter_2(intcodes, position), phase_setting, first_time, previous_output, temporary_output)
         else:
             return step(intcodes, position + 3, phase_setting, first_time, previous_output, temporary_output)
     elif read_opcode(pad_input(str(intcodes[position]))) == "06":
         if get_parameter_1(intcodes, position) == 0:
-            return step(intcodes, get_parameter_2(intcodes, position), phase_setting, first_time, previous_output,
-                        temporary_output)
+            return step(intcodes, get_parameter_2(intcodes, position), phase_setting, first_time, previous_output, temporary_output)
         else:
             return step(intcodes, position + 3, phase_setting, first_time, previous_output, temporary_output)
     elif read_opcode(pad_input(str(intcodes[position]))) == "07":

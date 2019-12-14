@@ -22,12 +22,10 @@ def get_parameter_2(intcodes: list, position: int) -> int:
 
 def step(intcodes: list, position: int) -> None:
     if read_opcode(pad_input(str(intcodes[position]))) == "01":
-        intcodes[intcodes[position + 3]] = int(get_parameter_1(intcodes, position)) + int(
-            get_parameter_2(intcodes, position))
+        intcodes[intcodes[position + 3]] = int(get_parameter_1(intcodes, position)) + int(get_parameter_2(intcodes, position))
         step(intcodes, position + 4)
     elif read_opcode(pad_input(str(intcodes[position]))) == "02":
-        intcodes[intcodes[position + 3]] = int(get_parameter_1(intcodes, position)) * int(
-            get_parameter_2(intcodes, position))
+        intcodes[intcodes[position + 3]] = int(get_parameter_1(intcodes, position)) * int(get_parameter_2(intcodes, position))
         step(intcodes, position + 4)
     elif read_opcode(pad_input(str(intcodes[position]))) == "03":
         intcodes[intcodes[position + 1]] = input("Please enter your input: ")
