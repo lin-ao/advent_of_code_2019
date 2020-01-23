@@ -84,7 +84,7 @@ def main() -> None:
                 previous_output = step(intcodes, 0, code[thruster], first_time, previous_output, temporary_output)
             else:
                 output_list.append(step(intcodes, 0, code[thruster], first_time, previous_output, temporary_output))
-    print(max(output_list))
+    print("Answer: " + str(max(output_list)))
 
 
 if __name__ == "__main__":

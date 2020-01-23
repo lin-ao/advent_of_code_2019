@@ -92,7 +92,7 @@ def main() -> None:
         temporary_output = 0
         last_output.append(step(thruster_intcodes, 0, 0, code, thruster_uninitialized, previous_output, temporary_output, thruster_position))
 
-    print(max(last_output))
+    print("Answer: " + str(max(last_output)))
 
 
 if __name__ == "__main__":
