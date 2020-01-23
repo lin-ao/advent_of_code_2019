@@ -1,5 +1,5 @@
 def pad_input(intcode: str) -> str:
-    return intcode.rjust(4, '0')
+    return intcode.rjust(4, "0")
 
 
 def read_opcode(intcode: str) -> str:
