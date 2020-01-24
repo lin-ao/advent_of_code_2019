@@ -1,5 +1,5 @@
 def calculate_fuel(mass: int) -> int:
-    fuel = int(mass / 3) - 2
+    fuel = (mass // 3) - 2
     return fuel
 
 
