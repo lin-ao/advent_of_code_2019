@@ -40,11 +40,11 @@ def manhattan_distance(point: tuple) -> int:
     return distance
 
 
-def closest_intersection(wire_list: list) -> int:
+def find_closest_intersection(wire_list: list) -> int:
     closest_intersection = None
     intersections = set.intersection(*wire_list)
     for intersection in intersections:
-        if closest_intersection == None:
+        if closest_intersection is None:
             closest_intersection = intersection
         elif manhattan_distance(intersection) < manhattan_distance(closest_intersection):
             closest_intersection = intersection
@@ -59,8 +59,8 @@ def main() -> None:
             wire_list.append(set())
             for instruction in line.split(","):
                 execute(wire_list[counter], position, instruction)
-        print(closest_intersection(wire_list))
-        print(manhattan_distance(closest_intersection(wire_list)))
+        print(find_closest_intersection(wire_list))
+        print(manhattan_distance(find_closest_intersection(wire_list)))
 
 
 if __name__ == "__main__":
