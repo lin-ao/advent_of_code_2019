@@ -11,16 +11,16 @@ def read_opcode(intcode: str) -> str:
 
 def get_parameter_1(intcodes: list, position: int) -> int:
     if pad_input(str(intcodes[position]))[1] == "0":
-        return (intcodes[intcodes[position + 1]])
+        return intcodes[intcodes[position + 1]]
     else:
-        return (intcodes[position + 1])
+        return intcodes[position + 1]
 
 
 def get_parameter_2(intcodes: list, position: int) -> int:
     if pad_input(str(intcodes[position]))[0] == "0":
-        return (intcodes[intcodes[position + 2]])
+        return intcodes[intcodes[position + 2]]
     else:
-        return (intcodes[position + 2])
+        return intcodes[position + 2]
 
 
 def step(thruster_intcodes: list, thruster: int, position: int, phase_setting: tuple, thruster_uninitialized: list, previous_output: int, temporary_output: int, thruster_position: list) -> int:
